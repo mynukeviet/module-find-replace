@@ -8,4 +8,4 @@
  */
 if (!defined('NV_ADMIN')) die('Stop!!!');
 
-$submenu['config'] = $lang_module['config'];
+//$submenu['config'] = $lang_module['config'];

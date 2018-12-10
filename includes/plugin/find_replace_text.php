@@ -12,18 +12,20 @@ if (!defined('NV_MAINFILE')) {
 }
 
 if (!defined('NV_ADMIN')) {
-    global $nv_Cache, $contents;
+    global $nv_Cache, $contents, $site_mods;
 
-    $_sql = 'SELECT find_text, replace_text FROM ' . NV_PREFIXLANG . '_find_replace WHERE status=1';
-    $list = $nv_Cache->db($_sql, 'id', 'find-replace');
+    if(isset($site_mods['find-replace'])){
+        $_sql = 'SELECT find_text, replace_text FROM ' . NV_PREFIXLANG . '_find_replace WHERE status=1';
+        $list = $nv_Cache->db($_sql, 'id', 'find-replace');
 
-    if (!empty($list)) {
-        foreach ($list as $l) {
-            $array_replace[$l['find_text']] = $l['replace_text'];
+        if (!empty($list)) {
+            foreach ($list as $l) {
+                $array_replace[$l['find_text']] = $l['replace_text'];
+            }
         }
-    }
 
-    foreach ($array_replace as $find => $replace) {
-        $contents = str_replace($find, $replace, $contents);
+        foreach ($array_replace as $find => $replace) {
+            $contents = str_replace($find, $replace, $contents);
+        }
     }
 }

@@ -19,13 +19,14 @@ if (!defined('NV_ADMIN')) {
         $list = $nv_Cache->db($_sql, 'id', 'find-replace');
 
         if (!empty($list)) {
+            $array_replace = array();
             foreach ($list as $l) {
                 $array_replace[$l['find_text']] = $l['replace_text'];
             }
-        }
-
-        foreach ($array_replace as $find => $replace) {
-            $contents = str_replace($find, $replace, $contents);
+            
+            foreach ($array_replace as $find => $replace) {
+                $contents = str_replace($find, $replace, $contents);
+            }
         }
     }
 }
